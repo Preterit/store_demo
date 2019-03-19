@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class Test {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-//       test01();
+//        test01();
         test02();
 
     }
@@ -20,20 +20,20 @@ public class Test {
         QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "update user set state = ? where username = ?";
         try {
-            runner.update(sql,1,"aaa");
+            runner.update(sql, 1, "aaa");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private static void test01() {
-        Map<String ,String[] > map = new HashMap<>();
-        map.put("name",new String[]{"垃圾1"});
-        map.put("password",new String[]{"垃圾2"});
-        map.put("phone",new String[]{"垃圾3"});
-        map.put("email",new String[]{"垃圾4"});
+        Map<String, String[]> map = new HashMap<>();
+        map.put("name", new String[]{"垃圾1"});
+        map.put("password", new String[]{"垃圾2"});
+        map.put("phone", new String[]{"垃圾3"});
+        map.put("email", new String[]{"垃圾4"});
         Bean bean = new Bean();
-        MyBeanUtils.populate(bean,map);
+        MyBeanUtils.populate(bean, map);
 
         System.out.println(bean.toString());
     }

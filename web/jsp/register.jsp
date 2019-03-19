@@ -52,7 +52,7 @@
 
         <div class="col-md-8" style="background:#fff;padding:40px 80px;margin:30px;border:7px solid #ccc;">
             <font>会员注册</font>USER REGISTER
-            <form class="form-horizontal" style="margin-top:5px;">
+            <form class="form-horizontal" style="margin-top:5px;" action="UserServlet?method=userRegist" method="post">
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-6">
@@ -78,6 +78,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">电话</label>
+                    <div class="col-sm-6">
+                        <input type="phone" name="telephone" class="form-control" id="inputPhone" placeholder="电话">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="usercaption" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-6">
                         <input type="text" name="name" class="form-control" id="usercaption" placeholder="请输入姓名">
@@ -87,17 +93,17 @@
                     <label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
                     <div class="col-sm-6">
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 男
+                            <input type="radio" name="sex" id="inlineRadio1" value="男"> 男
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 女
+                            <input type="radio" name="sex" id="inlineRadio2" value="女"> 女
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="date" class="col-sm-2 control-label">出生日期</label>
                     <div class="col-sm-6">
-                        <input type="date" class="form-control">
+                        <input type="date" name="birthday" class="form-control">
                     </div>
                 </div>
 

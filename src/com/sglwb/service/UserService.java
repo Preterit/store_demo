@@ -1,8 +1,8 @@
-package com.sglwb.dao;
+package com.sglwb.service;
 
 import com.sglwb.bean.UserBean;
 
-public interface UserDao {
+public interface UserService {
     void register(UserBean user) throws Exception;
 
     UserBean userLogin(UserBean user)throws Exception;
