@@ -3,6 +3,7 @@ package com.sglwb.web.servlet;
 import com.sglwb.bean.UserBean;
 import com.sglwb.service.UserService;
 import com.sglwb.service.serviceImpl.UserServiceImpl;
+import com.sglwb.utils.CookUtils;
 import com.sglwb.utils.DateUtil;
 import com.sglwb.utils.UUIDUtils;
 import com.sglwb.web.base.BaseServlet;
@@ -21,6 +22,10 @@ public class UserServlet extends BaseServlet {
     }
 
     public String loginUI(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Cookie ck = CookUtils.getCookieByName("remUser",request.getCookies());
+        if (null!=ck){
+            request.setAttribute("remUser",ck.getValue());
+        }
         return "/jsp/login.jsp";
     }
 
@@ -58,7 +63,7 @@ public class UserServlet extends BaseServlet {
         UserService service = new UserServiceImpl();
         UserBean userBean = service.userLogin(user);
         if (null != userBean) {
-//            //登录成功,向session中放入用户信息,重定向到首页
+            //登录成功,向session中放入用户信息,重定向到首页
             request.getSession().setAttribute("loginUser", userBean);
 
             //在登录成功的基础上,判断用户是否选中自动登录复选框
@@ -78,14 +83,24 @@ public class UserServlet extends BaseServlet {
                 ck.setMaxAge(60 * 60 * 60 * 7);
                 response.addCookie(ck);
             }
-            response.sendRedirect(request.getContextPath()+"/index.jsp");
-        }else{
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        } else {
             //登录失败,把登录信息放到msg展示
-            request.setAttribute("msg","用户名和密码不匹配!");
+            request.setAttribute("msg", "用户名和密码不匹配!");
             return "/jsp/login.jsp";
         }
         return null;
     }
-
-
+    public String logOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //用户退出,清空Session
+        request.getSession().invalidate();
+        Cookie ck = CookUtils.getCookieByName("autoLogin",request.getCookies());
+        if (null!=ck){
+            ck.setPath("/store_demo");
+            ck.setMaxAge(0);
+            response.addCookie(ck);
+        }
+        response.sendRedirect(request.getContextPath()+"/jsp/index.jsp");
+        return null;
+    }
 }

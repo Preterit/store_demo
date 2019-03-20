@@ -10,8 +10,8 @@ public class Test {
 
     public static void main(String[] args) {
 
-//        test01();
-        test02();
+        test01();
+//        test02();
 
     }
 
@@ -44,16 +44,6 @@ public class Test {
         private String phone;
         private String email;
 
-        @Override
-        public String toString() {
-            return "Bean{" +
-                    "name='" + name + '\'' +
-                    ", password='" + password + '\'' +
-                    ", phone='" + phone + '\'' +
-                    ", email='" + email + '\'' +
-                    '}';
-        }
-
         public String getName() {
             return name;
         }
@@ -84,6 +74,26 @@ public class Test {
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public Bean(String name, String password, String phone, String email) {
+            this.name = name;
+            this.password = password;
+            this.phone = phone;
+            this.email = email;
+        }
+
+        @Override
+        public String toString() {
+            return "Bean{" +
+                    "name='" + name + '\'' +
+                    ", password='" + password + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", email='" + email + '\'' +
+                    '}';
+        }
+
+        public Bean() {
         }
     }
 
