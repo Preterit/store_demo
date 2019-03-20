@@ -34,5 +34,6 @@
     <orderEntry type="library" name="c3p0-0.9.2-pre5" level="project" />
     <orderEntry type="library" name="commons-beanutils-1.8.3" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
