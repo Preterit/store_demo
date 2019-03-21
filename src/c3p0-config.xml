@@ -2,7 +2,7 @@
 	<!-- 默认配置，如果没有指定则使用这个配置 -->
 	<default-config>
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql://localhost:3306/store_v1</property>
+		<property name="jdbcUrl">jdbc:mysql://47.105.36.60:3306/store_v1</property>
 		<property name="user">root</property>
 		<property name="password">123456</property>
 		<property name="checkoutTimeout">30000</property>

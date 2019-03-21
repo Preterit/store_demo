@@ -14,3 +14,7 @@
 *.zip
 *.rar
 *.tar.gz
+/out
+
+/.idea
+/web/WEB-INF/classes
