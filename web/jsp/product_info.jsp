@@ -41,7 +41,7 @@
 			<jsp:include page="header.jsp"></jsp:include>
 
 		<div class="container">
-			<form method="post" about="${pageContext.request.contextPath}/CartServlet?method=addToCard" id="form1">
+			<form method="post" action="${pageContext.request.contextPath}/CartServlet?method=addToCard" id="form1">
 				<div class="row">
 					<div style="border: 1px solid #e4e4e4;width:930px;margin-bottom:10px;margin:0 auto;padding:10px;margin-bottom:10px;">
 						<a href="${pageContext.request.contextPath}/">首页&nbsp;&nbsp;&gt;</a>

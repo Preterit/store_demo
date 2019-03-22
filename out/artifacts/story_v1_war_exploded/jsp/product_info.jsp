@@ -41,7 +41,7 @@
 			<jsp:include page="header.jsp"></jsp:include>
 
 		<div class="container">
-			<form method="post" about="${pageContext.request.contextPath}/CartServlet?method=addToCard" id="form1">
+			<form method="post" action="${pageContext.request.contextPath}/CartServlet?method=addToCard" id="form1">
 				<div class="row">
 					<div style="border: 1px solid #e4e4e4;width:930px;margin-bottom:10px;margin:0 auto;padding:10px;margin-bottom:10px;">
 						<a href="${pageContext.request.contextPath}/">首页&nbsp;&nbsp;&gt;</a>
@@ -74,8 +74,7 @@
 								<div style="margin:20px 0 10px 0;;text-align: center;">
 									<%--加入到购物车 --%>
 									<a href="javascript:void(0)" onclick="submit()">
-										<input style="background: url('${pageContext.request.contextPath}/img/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0);height:36px;width:127px;" value="加入购物车" type="button">
-									</a> &nbsp;收藏商品</div>
+										<input style="background: url('${pageContext.request.contextPath}/img/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0);height:36px;width:127px;" value="加入购物车" type="button"></a> &nbsp;收藏商品</div>
 							</div>
 						</div>
 					</div>
