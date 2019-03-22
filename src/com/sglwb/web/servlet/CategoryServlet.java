@@ -19,8 +19,9 @@ public class CategoryServlet extends BaseServlet {
     public String findAllCats(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setContentType("application/json;charset=utf-8");
         String json="";
-        Jedis jedis = JedisUtils.getJedis();
-        json = jedis.get("allCats");
+
+//        Jedis jedis = JedisUtils.getJedis();
+//        json = jedis.get("allCats");
         if (null==json||"".equals(json)){
 //            System.out.println("缓存中没有数据");
             CategoryService cs = new CategoryServiceImpl();
@@ -29,7 +30,7 @@ public class CategoryServlet extends BaseServlet {
                 //将集合中的所有分类信息转换为JSON格式的字符串数据
                 json = JSONArray.fromObject(allCats).toString();
                 //保存到jedis数据库中
-                jedis.set("allCats",json);
+//                jedis.set("allCats",json);
             }
         }else{
 //            System.out.println("缓存中有数据");

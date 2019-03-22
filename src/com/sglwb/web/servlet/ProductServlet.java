@@ -15,7 +15,19 @@ import java.util.List;
 
 @WebServlet("/ProductServlet")
 public class ProductServlet extends BaseServlet {
+
     public String findProductByPid(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return null;
+    }
+
+    //findProductsWithCidAndPage
+    public String findProductsWithCidAndPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //接受分页信息
+        String cid = request.getParameter("cid");
+        int curNum = Integer.parseInt(request.getParameter("num"));
+
+        //
+
         return null;
     }
 }
