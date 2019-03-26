@@ -29,9 +29,9 @@
             <c:if test="${ not empty loginUser}">
                 <li><a href="#"> 欢迎 ${loginUser.name} </a></li>
                 <li><a href="${pageContext.request.contextPath}/UserServlet?method=logOut">退出</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
+                <li><a href="${pageContext.request.contextPath}/OrderServlet?method=findOrdersByUidWithPage&num=1">我的订单</a></li>
             </c:if>
-            <li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
         </ol>
     </div>
 </div>
