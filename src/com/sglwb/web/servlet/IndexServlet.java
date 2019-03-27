@@ -22,19 +22,6 @@ import java.util.List;
 public class IndexServlet extends BaseServlet {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        Cookie ck = CookUtils.getCookieByName("autoLogin",request.getCookies());
-        if (null!=ck){
-            String value = ck.getValue();
-            String[] split = value.split("#");
-            UserBean  userBean = new UserBean();
-            userBean.setUsername(split[0]);
-            userBean.setPassword(split[1]);
-
-            UserService service = new UserServiceImpl();
-            userBean = service.userLogin(userBean);
-            request.getSession().setAttribute("loginUser", userBean);
-        }
         ProductService ps = new ProduceServiceImpl();
         //获取最新的9条商品
         List<ProductBean> newsPd = ps.finNewProducts();

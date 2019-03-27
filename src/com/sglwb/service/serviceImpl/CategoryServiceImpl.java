@@ -13,4 +13,10 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryDao cd = new CategoryDaoImpl();
         return cd.findAllCats();
     }
+
+    @Override
+    public void saveCategory(CategoryBean category)throws Exception {
+        CategoryDao cd = new CategoryDaoImpl();
+        cd.saveCategory(category);
+    }
 }
