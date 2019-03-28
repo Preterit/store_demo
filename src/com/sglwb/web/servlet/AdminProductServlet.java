@@ -67,37 +67,43 @@ public class AdminProductServlet extends BaseServlet {
             List<FileItem> list = upload.parseRequest(request);
             for (FileItem fileItem : list) {
                 if (fileItem.isFormField()) { // 普通项
-                    map.put(fileItem.getFieldName(), fileItem.getString());
+                    map.put(fileItem.getFieldName(), fileItem.getString("utf-8"));
                 } else {  //上传项
                     //获取原文件名
                     String name = fileItem.getName();
                     //创建图片存储的真实路径
-                    String realPath=getServletContext().getRealPath("/products/3/");
+                    String realPath = getServletContext().getRealPath("/products/3/");
                     System.out.println("图片存储路径==" + realPath);
-//                    //创建文件
-                    File file = new File(realPath, name);
-                    if (!file.exists()) {
-                        file.createNewFile();
+                    //声明一个目录
+                    File newFile = new File(realPath);
+                    if (!newFile.exists()) {
+                        newFile.mkdir();
+                    }
+                    //创建文件
+                    File finalFile = new File(newFile, name);
+                    if (!finalFile.exists()) {
+                        finalFile.createNewFile();
                     }
 //                    //流对接
-                    OutputStream os = new FileOutputStream(file);
+                    //建立和空文件对应的输出流
+                    OutputStream os = new FileOutputStream(finalFile);
                     InputStream is = fileItem.getInputStream();
                     IOUtils.copy(is, os);
                     IOUtils.closeQuietly(is);
                     IOUtils.closeQuietly(os);
-                    product.setPimage("/product/3" + name);
+                    map.put("pimage", "/products/3/" + name);
                 }
             }
             BeanUtils.populate(product, map);
             product.setPid(UUIDUtils.getId());
             product.setPflag(0);
             product.setPdate(new Date());
-//            ProductService productService = new ProduceServiceImpl();
-//            productService.saveProduct(product);
+            ProductService productService = new ProduceServiceImpl();
+            productService.saveProduct(product);
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        response.sendRedirect(getServletContext().getContextPath() + "/AdminProductServlet?method=findAllProducts&num=1");
+        response.sendRedirect(getServletContext().getContextPath() + "/AdminProductServlet?method=findAllProducts&num=1");
         return null;
     }
 }

@@ -66,8 +66,28 @@ public class OrderDaoImpl implements OrderDao {
         return order;
     }
 
+    @Override
+    public int findTotalRecords() throws Exception {
+        String sql = "SELECT COUNT(*) FROM orders";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        Long num = (Long) runner.query(sql, new ScalarHandler());
+        return num.intValue();
+    }
+
+    @Override
+    public List<Order> findOrderWithPage(int startIndex, int pageSize) throws Exception {
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "SELECT * FROM orders ORDER BY ordertime DESC LIMIT ?,?";
+        List<Order> list = runner.query(sql, new BeanListHandler<Order>(Order.class), startIndex, pageSize);
+//        for (Order order : list) {
+//            sql = "SELECT * FROM orderitem o ,product p WHERE o.pid = p.pid AND oid =?";
+//            List<Map<String, Object>> list1 = runner.query(sql, new MapListHandler(),order.getOid());
+//            getOrderItemList(order,list1);
+//        }
+        return list;
+    }
+
     /**
-     *
      * @param order
      * @param list
      */
@@ -76,8 +96,8 @@ public class OrderDaoImpl implements OrderDao {
             ProductBean product = new ProductBean();
             OrderItem orderItem = new OrderItem();
             try {
-                BeanUtils.populate(product,map);
-                BeanUtils.populate(orderItem,map);
+                BeanUtils.populate(product, map);
+                BeanUtils.populate(orderItem, map);
             } catch (Exception e) {
                 e.printStackTrace();
             }

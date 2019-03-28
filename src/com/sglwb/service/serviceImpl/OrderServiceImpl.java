@@ -44,7 +44,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findOrderByOid(String oid) throws Exception {
         Order order = orderDao.findOrderByOid(oid);
-
         return order;
+    }
+
+    @Override
+    public PageModel findOrdersWithPage(int curNum)throws Exception {
+        int totalRecords = orderDao.findTotalRecords();
+        PageModel pm = new PageModel(curNum,totalRecords,5);
+        List<Order> list = orderDao.findOrderWithPage(pm.getStartIndex(), pm.getPageSize());
+        pm.setList(list);
+        pm.setUrl("AdminOrderServlet?method=findOrdersWithPage");
+        return pm;
     }
 }

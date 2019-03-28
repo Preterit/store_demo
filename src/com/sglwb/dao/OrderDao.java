@@ -16,4 +16,8 @@ public interface OrderDao {
     List<Order> findOrderByUidWithPage(UserBean user, int startIndex, int pageSize) throws Exception;
 
     Order findOrderByOid(String oid)throws Exception;
+
+    int findTotalRecords()throws Exception;
+
+    List<Order> findOrderWithPage(int startIndex, int pageSize)throws Exception;
 }

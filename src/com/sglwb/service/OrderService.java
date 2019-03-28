@@ -10,4 +10,6 @@ public interface OrderService {
     PageModel findOrdersByUidWithPage(UserBean user, int num)throws Exception;
 
     Order findOrderByOid(String oid)throws Exception;
+
+    PageModel findOrdersWithPage(int curNum)throws Exception;
 }
