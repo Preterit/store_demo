@@ -29,8 +29,8 @@
 		d.add('0102','01','分类管理','','','mainFrame');
 		d.add('010201','0102','分类管理','${pageContext.request.contextPath}/AdminCategoryServlet?method=findAllCategory','','mainFrame');
 		d.add('0104','01','商品管理');
-		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/admin/product/list.jsp','','mainFrame');
-		d.add('010402','0104','已下架商品管理','${pageContext.request.contextPath}/admin/product/pushDown_list.jsp','','mainFrame');
+		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/AdminProductServlet?method=findAllProducts&num=1','','mainFrame');
+		d.add('010402','0104','已下架商品管理','${pageContext.request.contextPath}/AdminProductServlet?method=findAllSoldOutProducts&num=1','','mainFrame');
 		d.add('0105','01','订单管理');
 		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/admin/order/list.jsp','','mainFrame');
 		d.add('010502','0105','未付款的订单','${pageContext.request.contextPath}/admin/order/list.jsp?state=1','','mainFrame');

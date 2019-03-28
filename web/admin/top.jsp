@@ -32,7 +32,6 @@ TH {
 				<td>
 					<img width="100%" src="${pageContext.request.contextPath}/img/admin/top_01.jpg">
 				</td>
-
 				<td width="100%" background="${pageContext.request.contextPath}/img/admin/top_100.jpg">
 				</td>
 			</tr>

@@ -26,7 +26,7 @@ public class AdminCategoryServlet extends BaseServlet {
     }
 
     public String addCategoryUI(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return "admin/category/edit.jsp";
+        return "admin/category/add.jsp";
     }
 
     public String addCategory(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -35,7 +35,8 @@ public class AdminCategoryServlet extends BaseServlet {
         category.setCid(UUIDUtils.getId());
         category.setCname(cname);
         categoryService.saveCategory(category);
-        return "admin/category/edit.jsp";
+        response.sendRedirect(request.getContextPath()+"/AdminCategoryServlet?method=findAllCategory");
+        return null;
     }
 
 }

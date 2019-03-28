@@ -37,4 +37,32 @@ public class ProduceServiceImpl implements ProductService {
         ProductDao pd=new ProductDaoImpl();
         return pd.findProductByPid(pid);
     }
+
+    @Override
+    public PageModel findAllProducts(int curNum,int pageSize) throws Exception {
+        ProductDao pd = new ProductDaoImpl();
+        int totalNum = pd.findTotalNum();
+        PageModel pm = new PageModel(curNum,totalNum,pageSize);
+        List<ProductBean> products = pd.findProductsWithPage(pm.getStartIndex(), pm.getPageSize());
+        pm.setList(products);
+        pm.setUrl("AdminProductServlet?method=findAllProducts");
+        return pm;
+    }
+
+    @Override
+    public PageModel findAllSoldOutProducts(int curNum, int i) throws Exception {
+        ProductDao pd = new ProductDaoImpl();
+        int totalNum = pd.findTotalNumBySoldOut();
+        PageModel pm= new PageModel(curNum,totalNum,5);
+        List<ProductBean> products = pd.findProductsWithPageBySoldOut(pm.getStartIndex(), pm.getPageSize());
+        pm.setList(products);
+        pm.setUrl("AdminProductServlet?method=findAllSoldOutProducts");
+        return pm;
+    }
+
+    @Override
+    public void saveProduct(ProductBean product) throws Exception {
+        ProductDao pd = new ProductDaoImpl();
+        pd.saveProduct(product);
+    }
 }

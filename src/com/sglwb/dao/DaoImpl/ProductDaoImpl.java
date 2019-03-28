@@ -42,11 +42,48 @@ public class ProductDaoImpl implements ProductDao {
         Long num = (Long) runner.query(sql, new ScalarHandler(), cid);
         return num.intValue();
     }
-
+    @Override
+    public int findTotalNum() throws Exception {
+        String sql = "select count(*) from product";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        Long num = (Long) runner.query(sql, new ScalarHandler());
+        return num.intValue();
+    }
     @Override
     public ProductBean findProductByPid(String pid) throws Exception {
         String sql = "select * from product where pid=?";
         QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
         return runner.query(sql, new BeanHandler<ProductBean>(ProductBean.class), pid);
+    }
+
+    @Override
+    public List<ProductBean> findProductsWithPage(int startIndex, int pageSize) throws Exception {
+        String sql = "select * from product limit ? ,?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        return runner.query(sql,new BeanListHandler<ProductBean>(ProductBean.class),startIndex,pageSize);
+    }
+
+    @Override
+    public List<ProductBean> findProductsWithPageBySoldOut(int startIndex, int pageSize) throws Exception {
+        String sql = "SELECT * FROM product WHERE pflag = ? LIMIT ?,?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        List<ProductBean> list = runner.query(sql, new BeanListHandler<ProductBean>(ProductBean.class), 1, startIndex, pageSize);
+        return list;
+    }
+
+    @Override
+    public int findTotalNumBySoldOut() throws Exception {
+        String sql = "SELECT Count(*) FROM product WHERE pflag = ?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        Long num = (Long) runner.query(sql, new ScalarHandler(), 1);
+        return num.intValue();
+    }
+
+    @Override
+    public void saveProduct(ProductBean product) throws Exception {
+        String sql="INSERT INTO product VALUES( ?,?,?,?,?,?,?,?,?,? )";
+        Object[] params={product.getPid(),product.getPname(),product.getMarket_price(),product.getShop_price(),product.getPimage(),product.getPdate(),product.getIs_hot(),product.getPdesc(),product.getPflag(),product.getCid()};
+        QueryRunner qr=new QueryRunner(JDBCUtils.getDataSource());
+        qr.update(sql,params);
     }
 }

@@ -22,6 +22,7 @@ public class CategoryDaoImpl implements CategoryDao {
     public void saveCategory(CategoryBean category) throws Exception {
         QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "insert into category values(?,?)";
-        runner.update(sql,category.getCname());
+        Object[] params = {category.getCid(),category.getCname()};
+        runner.update(sql,params);
     }
 }
