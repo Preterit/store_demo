@@ -19,7 +19,6 @@ public class AdminOrderServlet extends BaseServlet {
     OrderService orderService = new OrderServiceImpl();
 
     public String findOrdersWithPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("---------orderUI---------");
         int curNum = Integer.parseInt(request.getParameter("num"));
         PageModel pm = orderService.findOrdersWithPage(curNum);
         request.setAttribute("page", pm);
@@ -27,12 +26,18 @@ public class AdminOrderServlet extends BaseServlet {
     }
 
     public String findOrderByOidWithAjax(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("---------findOrderByOidWithAjax---------");
         String oid = request.getParameter("oid");
         Order order = orderService.findOrderByOid(oid);
         String jsonStr = JSONArray.fromObject(order.getList()).toString();
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(jsonStr);
         return null;
+    }
+    public String findOrdersBystateWithPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int curNum = Integer.parseInt(request.getParameter("num"));
+        int state = Integer.parseInt(request.getParameter("state"));
+        PageModel pm = orderService.findOrdersBystateWithPage(curNum,state);
+        request.setAttribute("page",pm);
+        return "admin/order/list.jsp";
     }
 }

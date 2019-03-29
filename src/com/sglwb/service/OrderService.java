@@ -12,4 +12,6 @@ public interface OrderService {
     Order findOrderByOid(String oid)throws Exception;
 
     PageModel findOrdersWithPage(int curNum)throws Exception;
+
+    PageModel findOrdersBystateWithPage(int curNum, int state)throws Exception;
 }

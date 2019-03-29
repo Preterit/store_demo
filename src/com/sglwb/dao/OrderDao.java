@@ -20,4 +20,8 @@ public interface OrderDao {
     int findTotalRecords()throws Exception;
 
     List<Order> findOrderWithPage(int startIndex, int pageSize)throws Exception;
+
+    int findTotalRecordsByState(int state)throws Exception;
+
+    List<Order> findOrdersBystateWithPage(int state, int startIndex, int pageSize)throws Exception;
 }

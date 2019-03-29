@@ -87,6 +87,22 @@ public class OrderDaoImpl implements OrderDao {
         return list;
     }
 
+    @Override
+    public int findTotalRecordsByState(int state) throws Exception {
+        String sql = "SELECT COUNT(*) FROM orders WHERE state = ?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        Long num = (Long) runner.query(sql, new ScalarHandler(), state);
+        return num.intValue();
+    }
+
+    @Override
+    public List<Order> findOrdersBystateWithPage(int state, int startIndex, int pageSize)throws Exception {
+        String sql = "SELECT * FROM orders WHERE state = ? ORDER BY ordertime DESC LIMIT ?,?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        List<Order> list = runner.query(sql, new BeanListHandler<Order>(Order.class), state, startIndex, pageSize);
+        return list;
+    }
+
     /**
      * @param order
      * @param list

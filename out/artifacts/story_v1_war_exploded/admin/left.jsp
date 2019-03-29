@@ -33,10 +33,10 @@
 		d.add('010402','0104','已下架商品管理','${pageContext.request.contextPath}/AdminProductServlet?method=findAllSoldOutProducts&num=1','','mainFrame');
 		d.add('0105','01','订单管理');
 		d.add('010501','0105','订单管理','${pageContext.request.contextPath}/AdminOrderServlet?method=findOrdersWithPage&num=1','','mainFrame');
-		d.add('010502','0105','未付款的订单','${pageContext.request.contextPath}/admin/order/list.jsp?state=1','','mainFrame');
-		d.add('010503','0105','已付款订单','${pageContext.request.contextPath}/admin/order/list.jsp?state=2','','mainFrame');
-		d.add('010504','0105','已发货的订单','${pageContext.request.contextPath}/admin/order/list.jsp?state=3','','mainFrame');
-		d.add('010505','0105','已完成的订单','${pageContext.request.contextPath}/admin/order/list.jsp?state=4','','mainFrame');
+		d.add('010502','0105','未付款的订单','${pageContext.request.contextPath}/AdminOrderServlet?method=findOrdersBystateWithPage&num=1&state=1','','mainFrame');
+		d.add('010503','0105','已付款订单','${pageContext.request.contextPath}/AdminOrderServlet?method=findOrdersBystateWithPage&num=1&state=2','','mainFrame');
+		d.add('010504','0105','已发货的订单','${pageContext.request.contextPath}/AdminOrderServlet?method=findOrdersBystateWithPage&num=1&state=3','','mainFrame');
+		d.add('010505','0105','已完成的订单','${pageContext.request.contextPath}/AdminOrderServlet?method=findOrdersBystateWithPage&num=1&state=4','','mainFrame');
 		document.write(d);
 	</script>
 </div>	</td>

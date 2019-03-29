@@ -56,4 +56,14 @@ public class OrderServiceImpl implements OrderService {
         pm.setUrl("AdminOrderServlet?method=findOrdersWithPage");
         return pm;
     }
+
+    @Override
+    public PageModel findOrdersBystateWithPage(int curNum, int state) throws Exception {
+        int totalRecords = orderDao.findTotalRecordsByState(state);
+        PageModel pm =new PageModel(curNum,totalRecords,5);
+        List<Order> list = orderDao.findOrdersBystateWithPage(state, pm.getStartIndex(), pm.getPageSize());
+        pm.setList(list);
+        pm.setUrl("AdminOrderServlet?method=findOrdersBystateWithPage&state="+state);
+        return pm;
+    }
 }
